@@ -3,6 +3,7 @@
 require "watir-webdriver"
 browser = Watir::Browser.new :chrome
 
+spreadsheet="http://goo.gl/I7XEcT"
 sheetpub = "http://goo.gl/2T60tU"
 doipre = "http://dx.doi.org/"
 doisuff = ""
