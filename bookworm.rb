@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "watir-webdriver"
+require "google_drive"
 require "roo"
 
 #set up some info
@@ -12,7 +13,15 @@ sheetprocessed = "#gid=4"
 results = sheetfull + sheetresults
 nameslist = sheetfull + sheetprocessed
 
-oo = Google.new('"'+sheetkey+'"')
+puts "What is your Google login email?"
+GOOGLE_MAIL = gets
+puts "What is your Google login password?"
+GOOGLE_PASSWORD = gets
+
+# this is not how you set ENV variables, system settings isn't working on Windows though...
+
+oo = Roo::Google.new('"'+sheetfull+'"')
+
 #now what
 
 browser = Watir::Browser.new :chrome
