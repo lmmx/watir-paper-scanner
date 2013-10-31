@@ -23,18 +23,12 @@ browser = Watir::Browser.new :chrome
 oo = Roo::Google.new(sheetkey, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD) #Loading spreadsheet :-)
 oo.default_sheet = "pubmed_result"
 
-browser.goto oo.cell(2,'P') #grabs the DOI and navigates to journal webpage (only where a D.O.I. is available)
-oo.set(line,'T',browser.url)
-
 #the following doesn't seem to work as desired but in theory it names each cell when on that row, simplifies things:
 
-3.upto(4) do |line|       #change "(4)" for "(oo.last_row)" when you've verified it works and run headless not Chrome
-  realurl        = oo.cell(line,'T')
-  if realurl
+2.upto(oo.last_row) do |line|       #grabs the DOI and navigates to journal webpage (only where a D.O.I. is available)
     browser.goto oo.cell(line,'P')
     oo.set(line,'T',browser.url)
   end
-end    #why does this just "puts" out the first line number rather than change anything in the spreadsheet??
 
 =begin        excuse me while I comment out the irrelevant bits for the time being
   lastauth       = oo.cell(line,'A')
