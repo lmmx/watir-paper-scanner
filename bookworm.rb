@@ -13,14 +13,13 @@ sheetprocessed = "#gid=4"
 results = sheetfull + sheetresults
 nameslist = sheetfull + sheetprocessed
 
-puts "What is your Google login email?"
+puts "Please enter your Gmail address"
 GOOGLE_MAIL = gets
-puts "What is your Google login password?"
+puts "Please enter your password"
 GOOGLE_PASSWORD = gets
 
-# this is not how you set ENV variables, system settings isn't working on Windows though...
-
-oo = Roo::Google.new('"'+sheetfull+'"')
+# This passes the login credentials to Roo without requiring every user change system environment variables
+oo = Roo::Google.new(sheetkey, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD)
 
 #now what
 
