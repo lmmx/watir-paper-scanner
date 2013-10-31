@@ -28,13 +28,14 @@ oo.set(line,'T',browser.url)
 
 #the following doesn't seem to work as desired but in theory it names each cell when on that row, simplifies things:
 
-5.upto(8) do |line|       #change "(4)" for "(oo.last_row)" when you've verified it works and run headless not Chrome
+3.upto(4) do |line|       #change "(4)" for "(oo.last_row)" when you've verified it works and run headless not Chrome
   realurl        = oo.cell(line,'T')
   if realurl
     browser.goto oo.cell(line,'P')
     oo.set(line,'T',browser.url)
   end
 end    #why does this just "puts" out the first line number rather than change anything in the spreadsheet??
+
 =begin        excuse me while I comment out the irrelevant bits for the time being
   lastauth       = oo.cell(line,'A')
   1authsurname   = oo.cell(line,'B')
@@ -61,14 +62,14 @@ end    #why does this just "puts" out the first line number rather than change a
   1authfull      = oo.cell(line,'Z')
 =end
   
-#Although this bit doesn't work, I don't actually want the array to be spat out, I just want
+#Comment 1) Although the following section doesn't work, I don't actually want the array to be spat out, I just want
 #the DOIs one at a time for my browser to navigate to. I don't have a need for a massive list of URLs
-#but it can stay while I understand how to use this thing
+#but it can stay as an example while I understand how to use this thing
 
 #this bit doesn't work  if pubmeduri
 #this bit doesn't work    puts '#{pubmeduri}\t#{title}'
 
-#idea for a RegExp to get titles:
+#Comment 2) Idea for a RegExp to get titles:
 #if browser.text.include? '*'
 #   puts browser.a(:text => "still need to get regex to find text with asterisk").flash
 #else
