@@ -1,0 +1,320 @@
+<!--
+
+this is a mix of ruby shell output, example xml found online and the xml I've
+generated with the ruby gem simple-xml as per the
+instructions in bookworm.rb to parse "pmceutilsxml"
+just while I try and work out the way to retrieve corresp
+from the minority of papers which have a PubMed Central 
+record (which highlights the corresponding author/s in the xml)
+
+-->
+
+ #=> {
+ "summary" => [{"title"=>["#scotruby speakers 2010"], "source"=>["http://twitter.com/drobertson/scotruby2010"], "recordx_type"=>["dynarex"]}], 
+ 
+"records" => [{"item"=>[{"name"=>["Jim Weirich"], "twitter_name"=>["jimweirich"], "twitter_id"=>["9070452"], "location"=>["iPhone: 39.229713,-84.521942"], "followers_count"=>["2510"], "friends_count"=>["368"], "bio"=>["Ruby Enthusiast"]}, {"name"=>["Joseph Wilk"], "twitter_name"=>["josephwilk"], "twitter_id"=>["14321259"], "location"=>["London"], "followers_count"=>["316"], "friends_count"=>["104"], "bio"=>["Monkey amongst men"]}, {"name"=>["Brian Marick"], "twitter_name"=>["marick"], "twitter_id"=>["8864512"], "location"=>["Champaign, IL, USA"], "followers_count"=>["2228"], "friends_count"=>["346"], "bio"=>["Agile consultant, dabbler in many things. Dilettante by trade. "]}, {"name"=>["Joe O'Brien"], "twitter_name"=>["objo"], "twitter_id"=>["1315011"], "location"=>["Columbus, Ohio"], "followers_count"=>["1619"], "friends_count"=>["471"], "bio"=>["Ruby evangelist, Geek, Father, Friend"]}, {"name"=>["Carl Lerche"], "twitter_name"=>["carllerche"], ... 
+
+
+
+
+irb(main):077:0>   1authfull      = oo.cell(line,'Z')
+SyntaxError: (irb):77: syntax error, unexpected tIDENTIFIER, expecting $end
+  1authfull      = oo.cell(line,'Z')
+           ^
+        from C:/Ruby193/bin/irb:12:in `<main>'
+irb(main):078:0> require 'net/http'
+=> false
+irb(main):079:0> require 'rubygems'
+=> false
+irb(main):080:0> require 'xmlsimple'
+=> false
+irb(main):081:0> 2.upto(oo.last_row) do |line|
+irb(main):082:1*     if pmceutilsxml == nil
+irb(main):083:2>       # do nothing
+irb(main):084:2*     else
+irb(main):085:2*         url = pmceutilsxml
+<l_data = Net::HTTP.get_response(URI.parse(url)).body
+<ta = XmlSimple.xml_in(xml_data, { 'KeyAttr' => 'name'})
+irb(main):088:2>     end
+irb(main):089:1> end
+=> 2
+irb(main):090:0> puts data
+{
+"article"=>[{"xmlns:xlink"=>"http://www.w3.org/1999/xlink", "xmlns:mml"=>"http:
+//www.w3.org/1998/Math/MathML", "article-type"=>"research-article", "front"=>[{"
+journal-meta"=>[{"journal-id"=>[{"journal-id-type"=>"nlm-ta", "content"=>"Proc N
+atl Acad Sci U S A"}, {"journal-id-type"=>"publisher-id", "content"=>"PNAS"}], "
+journal-title"=>["Proceedings of the National Academy of Sciences of the United
+States of America"], "issn"=>[{"pub-type"=>"ppub", "content"=>"0027-8424"}, {"pu
+b-type"=>"epub", "content"=>"1091-6490"}], "publisher"=>[{"publisher-name"=>["Na
+tional Academy of Sciences"]}]}], "article-meta"=>[{"article-id"=>[{"pub-id-type
+"=>"pmid", "content"=>"17060631"}, {"pub-id-type"=>"pmc", "content"=>"1637560"},
+ {"pub-id-type"=>"publisher-id", "content"=>"3908"}, {"pub-id-type"=>"doi", "con
+tent"=>"10.1073/pnas.0603850103"}], "article-categories"=>[{"subj-group"=>[{"sub
+j-group-type"=>"heading", "subject"=>["Biological Sciences"], "subj-group"=>[{"s
+ubject"=>["Biophysics"]}]}]}], "title-group"=>[{"article-title"=>["On structural
+ transitions, thermodynamic equilibrium, and the phase diagram of DNA and RNA du
+plexes under torque and tension"]}], "contrib-group"=>[{"contrib"=>[{"contrib-ty
+pe"=>"author", "name"=>[{"surname"=>["Wereszczynski"], "given-names"=>["Jeff"]}]
+, "xref"=>[{"rid"=>"aff1", "ref-type"=>"aff"}]}, {"contrib-type"=>"author", "nam
+e"=>[{"surname"=>["Andricioaei"], "given-names"=>["Ioan"]}], "xref"=>[{"rid"=>"a
+ff1", "ref-type"=>"aff"}, {"ref-type"=>"corresp", "rid"=>"cor1", "content"=>"*"}
+]}], "aff"=>[{"id"=>"aff1", "content"=>"Department of Chemistry, Program in Biop
+hysics, and Center for Computational Medicine and Biology, University of Michiga
+n, Ann Arbor, MI 48109"}]}], "author-notes"=>[{"corresp"=>[{"id"=>"cor1", "email
+"=>["andricio@umich.edu"], "content"=>"*To whom correspondence should be address
+ed. E-mail:\n"}], "fn"=>[{"fn-type"=>"edited-by", "p"=>["Edited by Michael Levit
+t, Stanford University School of Medicine, Stanford, CA, and approved September
+11, 2006"]}, {"fn-type"=>"con", "p"=>["Author contributions: J.W. and I.A. desig
+ned research; J.W. performed research; J.W. and I.A. analyzed data; and J.W. and
+ I.A. wrote the paper."]}]}], "pub-date"=>[{"pub-type"=>"ppub", "day"=>["31"], "
+month"=>["10"], "year"=>["2006"]}, {"pub-type"=>"epub", "day"=>["23"], "month"=>
+["10"], "year"=>["2006"]}], "volume"=>["103"], "issue"=>["44"], "fpage"=>["16200
+"], "lpage"=>["16205"], "history"=>[{"date"=>[{"date-type"=>"received", "day"=>[
+"11"], "month"=>["5"], "year"=>["2006"]}]}], "copyright-statement"=>["\u00A9 200
+6 by The National Academy of Sciences of the USA"], "copyright-year"=>["2006"],
+"self-uri"=>[{"xlink:title"=>"pdf", "xlink:href"=>"zpq04406016200.pdf"}], "abstr
+act"=>[{"p"=>["A precise understanding of the flexibility of double stranded nuc
+leic acids and the nature of their deformed conformations induced by external fo
+rces is important for a wide range of biological processes including transcripti
+onal regulation, supercoil and catenane removal, and site-specific recombination
+. We present, at atomic resolution, a simulation of the dynamics involved in the
+ transitions from B-DNA and A-RNA to Pauling (P) forms and to denatured states d
+riven by application of external torque and tension. We then calculate the free
+energy profile along a B- to P-transition coordinate and from it, compute a reve
+rsible pathway, i.e., an isotherm of tension and torque pairs required to mainta
+in P-DNA in equilibrium. The reversible isotherm maps correctly onto a phase dia
+gram derived from single molecule experiments, and yields values of elongation,
+twist, and twist-stretch coupling in agreement with measured values. We also sho
+w that configurational entropy compensates significantly for the large electrost
+atic energy increase due to closer-packed P backbones. A similar set of simulati
+ons applied to RNA are used to predict a novel structure, P-RNA, with its associ
+ated free energy, equilibrium tension, torque and structural parameters, and to
+assign the location, on the phase-diagram, of a putative force\u2013torque-depen
+dent RNA \u201Ctriple point.\u201D"]}], "kwd-group"=>[{"kwd"=>["molecular dynami
+cs", "nucleic acid conformations", "Pauling model for DNA", "single-molecule man
+ipulations"]}], "custom-meta-wrap"=>[{"custom-meta"=>[{"meta-name"=>["PDF"], "me
+ta-value"=>[{"uri"=>[{"xlink:type"=>"simple", "xlink:href"=>"zpq04406016200.pdf"
+}]}]}]}]}]}]}]}
+=> nil
+irb(main):091:0> puts data['name']
+
+=> nil
+irb(main):092:0> puts data['article']
+{"xmlns:xlink"=>"http://www.w3.org/1999/xlink", "xmlns:mml"=>"http://www.w3.org/
+1998/Math/MathML", "article-type"=>"research-article", "front"=>[{"journal-meta"
+=>[{"journal-id"=>[{"journal-id-type"=>"nlm-ta", "content"=>"Proc Natl Acad Sci
+U S A"}, {"journal-id-type"=>"publisher-id", "content"=>"PNAS"}], "journal-title
+"=>["Proceedings of the National Academy of Sciences of the United States of Ame
+rica"], "issn"=>[{"pub-type"=>"ppub", "content"=>"0027-8424"}, {"pub-type"=>"epu
+b", "content"=>"1091-6490"}], "publisher"=>[{"publisher-name"=>["National Academ
+y of Sciences"]}]}], "article-meta"=>[{"article-id"=>[{"pub-id-type"=>"pmid", "c
+ontent"=>"17060631"}, {"pub-id-type"=>"pmc", "content"=>"1637560"}, {"pub-id-typ
+e"=>"publisher-id", "content"=>"3908"}, {"pub-id-type"=>"doi", "content"=>"10.10
+73/pnas.0603850103"}], "article-categories"=>[{"subj-group"=>[{"subj-group-type"
+=>"heading", "subject"=>["Biological Sciences"], "subj-group"=>[{"subject"=>["Bi
+ophysics"]}]}]}], "title-group"=>[{"article-title"=>["On structural transitions,
+ thermodynamic equilibrium, and the phase diagram of DNA and RNA duplexes under
+torque and tension"]}], "contrib-group"=>[{"contrib"=>[{"contrib-type"=>"author"
+, "name"=>[{"surname"=>["Wereszczynski"], "given-names"=>["Jeff"]}], "xref"=>[{"
+rid"=>"aff1", "ref-type"=>"aff"}]}, {"contrib-type"=>"author", "name"=>[{"surnam
+e"=>["Andricioaei"], "given-names"=>["Ioan"]}], "xref"=>[{"rid"=>"aff1", "ref-ty
+pe"=>"aff"}, {"ref-type"=>"corresp", "rid"=>"cor1", "content"=>"*"}]}], "aff"=>[
+{"id"=>"aff1", "content"=>"Department of Chemistry, Program in Biophysics, and C
+enter for Computational Medicine and Biology, University of Michigan, Ann Arbor,
+ MI 48109"}]}], "author-notes"=>[{"corresp"=>[{"id"=>"cor1", "email"=>["andricio
+@umich.edu"], "content"=>"*To whom correspondence should be addressed. E-mail:\n
+"}], "fn"=>[{"fn-type"=>"edited-by", "p"=>["Edited by Michael Levitt, Stanford U
+niversity School of Medicine, Stanford, CA, and approved September 11, 2006"]},
+{"fn-type"=>"con", "p"=>["Author contributions: J.W. and I.A. designed research;
+ J.W. performed research; J.W. and I.A. analyzed data; and J.W. and I.A. wrote t
+he paper."]}]}], "pub-date"=>[{"pub-type"=>"ppub", "day"=>["31"], "month"=>["10"
+], "year"=>["2006"]}, {"pub-type"=>"epub", "day"=>["23"], "month"=>["10"], "year
+"=>["2006"]}], "volume"=>["103"], "issue"=>["44"], "fpage"=>["16200"], "lpage"=>
+["16205"], "history"=>[{"date"=>[{"date-type"=>"received", "day"=>["11"], "month
+"=>["5"], "year"=>["2006"]}]}], "copyright-statement"=>["\u00A9 2006 by The Nati
+onal Academy of Sciences of the USA"], "copyright-year"=>["2006"], "self-uri"=>[
+{"xlink:title"=>"pdf", "xlink:href"=>"zpq04406016200.pdf"}], "abstract"=>[{"p"=>
+["A precise understanding of the flexibility of double stranded nucleic acids an
+d the nature of their deformed conformations induced by external forces is impor
+tant for a wide range of biological processes including transcriptional regulati
+on, supercoil and catenane removal, and site-specific recombination. We present,
+ at atomic resolution, a simulation of the dynamics involved in the transitions
+from B-DNA and A-RNA to Pauling (P) forms and to denatured states driven by appl
+ication of external torque and tension. We then calculate the free energy profil
+e along a B- to P-transition coordinate and from it, compute a reversible pathwa
+y, i.e., an isotherm of tension and torque pairs required to maintain P-DNA in e
+quilibrium. The reversible isotherm maps correctly onto a phase diagram derived
+from single molecule experiments, and yields values of elongation, twist, and tw
+ist-stretch coupling in agreement with measured values. We also show that config
+urational entropy compensates significantly for the large electrostatic energy i
+ncrease due to closer-packed P backbones. A similar set of simulations applied t
+o RNA are used to predict a novel structure, P-RNA, with its associated free ene
+rgy, equilibrium tension, torque and structural parameters, and to assign the lo
+cation, on the phase-diagram, of a putative force\u2013torque-dependent RNA \u20
+1Ctriple point.\u201D"]}], "kwd-group"=>[{"kwd"=>["molecular dynamics", "nucleic
+ acid conformations", "Pauling model for DNA", "single-molecule manipulations"]}
+], "custom-meta-wrap"=>[{"custom-meta"=>[{"meta-name"=>["PDF"], "meta-value"=>[{
+"uri"=>[{"xlink:type"=>"simple", "xlink:href"=>"zpq04406016200.pdf"}]}]}]}]}]}]}
+
+=> nil
+irb(main):093:0> puts data['front']
+
+=> nil
+irb(main):094:0> puts data['article']
+{"xmlns:xlink"=>"http://www.w3.org/1999/xlink", "xmlns:mml"=>"http://www.w3.org/
+1998/Math/MathML", "article-type"=>"research-article", "front"=>[{"journal-meta"
+=>[{"journal-id"=>[{"journal-id-type"=>"nlm-ta", "content"=>"Proc Natl Acad Sci
+U S A"}, {"journal-id-type"=>"publisher-id", "content"=>"PNAS"}], "journal-title
+"=>["Proceedings of the National Academy of Sciences of the United States of Ame
+rica"], "issn"=>[{"pub-type"=>"ppub", "content"=>"0027-8424"}, {"pub-type"=>"epu
+b", "content"=>"1091-6490"}], "publisher"=>[{"publisher-name"=>["National Academ
+y of Sciences"]}]}], "article-meta"=>[{"article-id"=>[{"pub-id-type"=>"pmid", "c
+ontent"=>"17060631"}, {"pub-id-type"=>"pmc", "content"=>"1637560"}, {"pub-id-typ
+e"=>"publisher-id", "content"=>"3908"}, {"pub-id-type"=>"doi", "content"=>"10.10
+73/pnas.0603850103"}], "article-categories"=>[{"subj-group"=>[{"subj-group-type"
+=>"heading", "subject"=>["Biological Sciences"], "subj-group"=>[{"subject"=>["Bi
+ophysics"]}]}]}], "title-group"=>[{"article-title"=>["On structural transitions,
+ thermodynamic equilibrium, and the phase diagram of DNA and RNA duplexes under
+torque and tension"]}], "contrib-group"=>[{"contrib"=>[{"contrib-type"=>"author"
+, "name"=>[{"surname"=>["Wereszczynski"], "given-names"=>["Jeff"]}], "xref"=>[{"
+rid"=>"aff1", "ref-type"=>"aff"}]}, {"contrib-type"=>"author", "name"=>[{"surnam
+e"=>["Andricioaei"], "given-names"=>["Ioan"]}], "xref"=>[{"rid"=>"aff1", "ref-ty
+pe"=>"aff"}, {"ref-type"=>"corresp", "rid"=>"cor1", "content"=>"*"}]}], "aff"=>[
+{"id"=>"aff1", "content"=>"Department of Chemistry, Program in Biophysics, and C
+enter for Computational Medicine and Biology, University of Michigan, Ann Arbor,
+ MI 48109"}]}], "author-notes"=>[{"corresp"=>[{"id"=>"cor1", "email"=>["andricio
+@umich.edu"], "content"=>"*To whom correspondence should be addressed. E-mail:\n
+"}], "fn"=>[{"fn-type"=>"edited-by", "p"=>["Edited by Michael Levitt, Stanford U
+niversity School of Medicine, Stanford, CA, and approved September 11, 2006"]},
+{"fn-type"=>"con", "p"=>["Author contributions: J.W. and I.A. designed research;
+ J.W. performed research; J.W. and I.A. analyzed data; and J.W. and I.A. wrote t
+he paper."]}]}], "pub-date"=>[{"pub-type"=>"ppub", "day"=>["31"], "month"=>["10"
+], "year"=>["2006"]}, {"pub-type"=>"epub", "day"=>["23"], "month"=>["10"], "year
+"=>["2006"]}], "volume"=>["103"], "issue"=>["44"], "fpage"=>["16200"], "lpage"=>
+["16205"], "history"=>[{"date"=>[{"date-type"=>"received", "day"=>["11"], "month
+"=>["5"], "year"=>["2006"]}]}], "copyright-statement"=>["\u00A9 2006 by The Nati
+onal Academy of Sciences of the USA"], "copyright-year"=>["2006"], "self-uri"=>[
+{"xlink:title"=>"pdf", "xlink:href"=>"zpq04406016200.pdf"}], "abstract"=>[{"p"=>
+["A precise understanding of the flexibility of double stranded nucleic acids an
+d the nature of their deformed conformations induced by external forces is impor
+tant for a wide range of biological processes including transcriptional regulati
+on, supercoil and catenane removal, and site-specific recombination. We present,
+ at atomic resolution, a simulation of the dynamics involved in the transitions
+from B-DNA and A-RNA to Pauling (P) forms and to denatured states driven by appl
+ication of external torque and tension. We then calculate the free energy profil
+e along a B- to P-transition coordinate and from it, compute a reversible pathwa
+y, i.e., an isotherm of tension and torque pairs required to maintain P-DNA in e
+quilibrium. The reversible isotherm maps correctly onto a phase diagram derived
+from single molecule experiments, and yields values of elongation, twist, and tw
+ist-stretch coupling in agreement with measured values. We also show that config
+urational entropy compensates significantly for the large electrostatic energy i
+ncrease due to closer-packed P backbones. A similar set of simulations applied t
+o RNA are used to predict a novel structure, P-RNA, with its associated free ene
+rgy, equilibrium tension, torque and structural parameters, and to assign the lo
+cation, on the phase-diagram, of a putative force\u2013torque-dependent RNA \u20
+1Ctriple point.\u201D"]}], "kwd-group"=>[{"kwd"=>["molecular dynamics", "nucleic
+ acid conformations", "Pauling model for DNA", "single-molecule manipulations"]}
+], "custom-meta-wrap"=>[{"custom-meta"=>[{"meta-name"=>["PDF"], "meta-value"=>[{
+"uri"=>[{"xlink:type"=>"simple", "xlink:href"=>"zpq04406016200.pdf"}]}]}]}]}]}]}
+
+=> nil
+irb(main):095:0> puts data['article']['front']
+TypeError: can't convert String into Integer
+        from (irb):95:in `[]'
+        from (irb):95
+        from C:/Ruby193/bin/irb:12:in `<main>'
+irb(main):096:0> puts data['journal-meta']
+
+=> nil
+irb(main):097:0> puts data['article'
+irb(main):098:1> puts data['article']
+irb(main):099:1> ]
+SyntaxError: (irb):98: syntax error, unexpected tIDENTIFIER, expecting ']'
+puts data['article']
+    ^
+(irb):99: syntax error, unexpected ']', expecting $end
+        from C:/Ruby193/bin/irb:12:in `<main>'
+irb(main):100:0> puts data['article']
+{"xmlns:xlink"=>"http://www.w3.org/1999/xlink", "xmlns:mml"=>"http://www.w3.org/
+1998/Math/MathML", "article-type"=>"research-article", "front"=>[{"journal-meta"
+=>[{"journal-id"=>[{"journal-id-type"=>"nlm-ta", "content"=>"Proc Natl Acad Sci
+U S A"}, {"journal-id-type"=>"publisher-id", "content"=>"PNAS"}], "journal-title
+"=>["Proceedings of the National Academy of Sciences of the United States of Ame
+rica"], "issn"=>[{"pub-type"=>"ppub", "content"=>"0027-8424"}, {"pub-type"=>"epu
+b", "content"=>"1091-6490"}], "publisher"=>[{"publisher-name"=>["National Academ
+y of Sciences"]}]}], "article-meta"=>[{"article-id"=>[{"pub-id-type"=>"pmid", "c
+ontent"=>"17060631"}, {"pub-id-type"=>"pmc", "content"=>"1637560"}, {"pub-id-typ
+e"=>"publisher-id", "content"=>"3908"}, {"pub-id-type"=>"doi", "content"=>"10.10
+73/pnas.0603850103"}], "article-categories"=>[{"subj-group"=>[{"subj-group-type"
+=>"heading", "subject"=>["Biological Sciences"], "subj-group"=>[{"subject"=>["Bi
+ophysics"]}]}]}], "title-group"=>[{"article-title"=>["On structural transitions,
+ thermodynamic equilibrium, and the phase diagram of DNA and RNA duplexes under
+torque and tension"]}], "contrib-group"=>[{"contrib"=>[{"contrib-type"=>"author"
+, "name"=>[{"surname"=>["Wereszczynski"], "given-names"=>["Jeff"]}], "xref"=>[{"
+rid"=>"aff1", "ref-type"=>"aff"}]}, {"contrib-type"=>"author", "name"=>[{"surnam
+e"=>["Andricioaei"], "given-names"=>["Ioan"]}], "xref"=>[{"rid"=>"aff1", "ref-ty
+pe"=>"aff"}, {"ref-type"=>"corresp", "rid"=>"cor1", "content"=>"*"}]}], "aff"=>[
+{"id"=>"aff1", "content"=>"Department of Chemistry, Program in Biophysics, and C
+enter for Computational Medicine and Biology, University of Michigan, Ann Arbor,
+ MI 48109"}]}], "author-notes"=>[{"corresp"=>[{"id"=>"cor1", "email"=>["andricio
+@umich.edu"], "content"=>"*To whom correspondence should be addressed. E-mail:\n
+"}], "fn"=>[{"fn-type"=>"edited-by", "p"=>["Edited by Michael Levitt, Stanford U
+niversity School of Medicine, Stanford, CA, and approved September 11, 2006"]},
+{"fn-type"=>"con", "p"=>["Author contributions: J.W. and I.A. designed research;
+ J.W. performed research; J.W. and I.A. analyzed data; and J.W. and I.A. wrote t
+he paper."]}]}], "pub-date"=>[{"pub-type"=>"ppub", "day"=>["31"], "month"=>["10"
+], "year"=>["2006"]}, {"pub-type"=>"epub", "day"=>["23"], "month"=>["10"], "year
+"=>["2006"]}], "volume"=>["103"], "issue"=>["44"], "fpage"=>["16200"], "lpage"=>
+["16205"], "history"=>[{"date"=>[{"date-type"=>"received", "day"=>["11"], "month
+"=>["5"], "year"=>["2006"]}]}], "copyright-statement"=>["\u00A9 2006 by The Nati
+onal Academy of Sciences of the USA"], "copyright-year"=>["2006"], "self-uri"=>[
+{"xlink:title"=>"pdf", "xlink:href"=>"zpq04406016200.pdf"}], "abstract"=>[{"p"=>
+["A precise understanding of the flexibility of double stranded nucleic acids an
+d the nature of their deformed conformations induced by external forces is impor
+tant for a wide range of biological processes including transcriptional regulati
+on, supercoil and catenane removal, and site-specific recombination. We present,
+ at atomic resolution, a simulation of the dynamics involved in the transitions
+from B-DNA and A-RNA to Pauling (P) forms and to denatured states driven by appl
+ication of external torque and tension. We then calculate the free energy profil
+e along a B- to P-transition coordinate and from it, compute a reversible pathwa
+y, i.e., an isotherm of tension and torque pairs required to maintain P-DNA in e
+quilibrium. The reversible isotherm maps correctly onto a phase diagram derived
+from single molecule experiments, and yields values of elongation, twist, and tw
+ist-stretch coupling in agreement with measured values. We also show that config
+urational entropy compensates significantly for the large electrostatic energy i
+ncrease due to closer-packed P backbones. A similar set of simulations applied t
+o RNA are used to predict a novel structure, P-RNA, with its associated free ene
+rgy, equilibrium tension, torque and structural parameters, and to assign the lo
+cation, on the phase-diagram, of a putative force\u2013torque-dependent RNA \u20
+1Ctriple point.\u201D"]}], "kwd-group"=>[{"kwd"=>["molecular dynamics", "nucleic
+ acid conformations", "Pauling model for DNA", "single-molecule manipulations"]}
+], "custom-meta-wrap"=>[{"custom-meta"=>[{"meta-name"=>["PDF"], "meta-value"=>[{
+"uri"=>[{"xlink:type"=>"simple", "xlink:href"=>"zpq04406016200.pdf"}]}]}]}]}]}]}
+
+=> nil
+<'article']['front']['article-meta']['contrib-group']['name'
+irb(main):102:1> ]
+TypeError: can't convert String into Integer
+        from (irb):101:in `[]'
+        from (irb):101
+        from C:/Ruby193/bin/irb:12:in `<main>'
+<']['front']['article-meta']['contrib-group']['name']
+TypeError: can't convert String into Integer
+        from (irb):103:in `[]'
+        from (irb):103
+        from C:/Ruby193/bin/irb:12:in `<main>'
+irb(main):104:0> puts data['front']['article-meta']['contrib-group']['name']
+NoMethodError: undefined method `[]' for nil:NilClass
+        from (irb):104
+        from C:/Ruby193/bin/irb:12:in `<main>'
+irb(main):105:0> puts data['front']
+
+=> nil
+irb(main):106:0> puts data['name']
+
+=> nil
+irb(main):107:0> puts data['surname']
+
+=> nil
+irb(main):108:0>
