@@ -10,12 +10,10 @@ sheetfull="https://docs.google.com/spreadsheet/ccc?key=" + sheetkey   #use this 
 sheetresults = "#gid=5"                 #append this to the URL for the sheet this program will use (pubmed_result)
 results = sheetfull + sheetresults      #hey look I did it for you...
 
-puts "Please enter your Gmail address"
-GOOGLE_MAIL = gets
-puts "Please enter your password"
-GOOGLE_PASSWORD = gets
-#GOOGLE_MAIL = "For ease you can just set it here instead of being questioned"
-#GOOGLE_PASSWORD = "^Ditto^"
+#puts "Please enter your Gmail address"
+#GOOGLE_MAIL = gets
+#puts "Please enter your password"
+#GOOGLE_PASSWORD = gets
 
 browser = Watir::Browser.new :chrome
 
