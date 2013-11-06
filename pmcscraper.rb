@@ -26,45 +26,39 @@ if (defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD).nil?)
     puts "Thanks!"
 end
 
-if (defined?(browser.url).nil?)
-    browser = Watir::Browser.new :chrome
-end
-
 # This passes the login credentials to Roo without requiring every user change system environment variables
 oo = Roo::Google.new(sheetkey, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD) #Loading spreadsheet :-)
 oo.default_sheet = "pubmed_result"
 
   lastauth          = oo.cell(line,'A')
-  1authsurname      = oo.cell(line,'B')
-  unique1authsur    = oo.cell(line,'C')
-  correspauth       = oo.cell(line,'D')
-  hyplink           = oo.cell(line,'E')
-  title             = oo.cell(line,'F')
-  pmurlfield        = oo.cell(line,'G')
-  pmid              = oo.cell(line,'H')
-  journal           = oo.cell(line,'I')
-  authors           = oo.cell(line,'J')
-  details           = oo.cell(line,'K')
-  nodoi             = oo.cell(line,'L')
-  doi               = oo.cell(line,'O')
-  doiuri            = oo.cell(line,'P')
-  doixml            = oo.cell(line,'Q')
-  pmceutilsxml      = oo.cell(line,'R')
-  realurl           = oo.cell(line,'T')
-  pmcid             = oo.cell(line,'U')
-  pubmeduri         = oo.cell(line,'V')
-  identifiers       = oo.cell(line,'W')
-  pmid              = oo.cell(line,'X')
-  properties        = oo.cell(line,'Y')
-  1authfull         = oo.cell(line,'Z')
-  
+  fauthsur          = oo.cell(line,'B')
+  uniqfasur         = oo.cell(line,'C')
+  correspauthsur    = oo.cell(line,'D')
+  correspauthgn     = oo.cell(line,'E')
+  hyplink           = oo.cell(line,'F')
+  title             = oo.cell(line,'G')
+  pmurlfield        = oo.cell(line,'H')
+  pmid              = oo.cell(line,'I')
+  journal           = oo.cell(line,'J')
+  authors           = oo.cell(line,'K')
+  details           = oo.cell(line,'L')
+  nodoi             = oo.cell(line,'M')
+  doi               = oo.cell(line,'P')
+  doiuri            = oo.cell(line,'Q')
+  doixml            = oo.cell(line,'R')
+  pmceutilsxml      = oo.cell(line,'S')
+  realurl           = oo.cell(line,'U')
+  pmcid             = oo.cell(line,'V')
+  pubmeduri         = oo.cell(line,'W')
+  identifiers       = oo.cell(line,'X')
+  pmid              = oo.cell(line,'Y')
+  properties        = oo.cell(line,'Z')
+  fauthfull         = oo.cell(line,'AA')
+
 if (defined?(Net).nil?)
     require "net/http"
 end
 
-require "multi_xml"
-    MultiXml.parser = :rexml
- 
 2.upto(oo.last_row) do |line|
     if pmceutilsxml == nil
       # do nothing
@@ -72,17 +66,10 @@ require "multi_xml"
         url = pmceutilsxml
         xml_data = Net::HTTP.get_response(URI.parse(url)).body      # stores the XML
         parsed = REXML::Document.new xml_data
-        
-        #something like the following will be able to get the name...
-        
-        parsed.elements.each("pmc-articleset/article/front/article-meta/contrib-group/contrib") 
-         { |element| puts element.attributes["contrib-type"] }
-         
-        parsed.elements.each("pmc-articleset/article/front/article-meta/contrib-group/contrib") 
-         { |element| puts element.attributes["contrib-type"] } #gives the xref-type - I want the name based on this
-         
-        puts root.elements["article/front/article-meta/contrib-group/contrib/xref[@ref-type='corresp']"].attributes["rid"]
+        parsedoc = Nokogiri::XML.parse(xml_data)
+        parsedoc.search('xref[text()="*"] ~ *').map &:text
+        corrdetails = doc.at('contrib:has(xref[text()="*"])')
+        oo.set(line,'D', corrdetails.xpath( "//surname" ).text )
+        oo.set(line,'E', corrdetails.xpath("//given-names").text )
     end
 end
-
-browser.close        # call it a day
