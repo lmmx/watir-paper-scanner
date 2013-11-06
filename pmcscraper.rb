@@ -58,6 +58,10 @@ oo.default_sheet = "pubmed_result"
   properties        = oo.cell(line,'Y')
   1authfull         = oo.cell(line,'Z')
   
+if (defined?(Net).nil?)
+    require "net/http"
+end
+
 require "multi_xml"
     MultiXml.parser = :rexml
  
