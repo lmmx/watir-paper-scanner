@@ -2,10 +2,6 @@
 
 #check that you came here from bookworm.rb, i.e. after loading the libraries needed:
 
-if (defined?(Ox).nil?)
-    require "ox"
-end
-
 if (defined?(Roo).nil? && defined?(Watir).nil?)
   require "watir-webdriver"
   require "google_drive"
@@ -62,13 +58,26 @@ oo.default_sheet = "pubmed_result"
   properties        = oo.cell(line,'Y')
   1authfull         = oo.cell(line,'Z')
   
+require "multi_xml"
+    MultiXml.parser = :rexml
+ 
 2.upto(oo.last_row) do |line|
     if pmceutilsxml == nil
       # do nothing
     else
         url = pmceutilsxml
-        xml_data = Net::HTTP.get_response(URI.parse(url)).body      #this if for simplexml
-        data = XmlSimple.xml_in(xml_data, { 'KeyAttr' => 'name'})   #change me to ox syntax!
+        xml_data = Net::HTTP.get_response(URI.parse(url)).body      # stores the XML
+        parsed = REXML::Document.new xml_data
+        
+        #something like the following will be able to get the name...
+        
+        parsed.elements.each("pmc-articleset/article/front/article-meta/contrib-group/contrib") 
+         { |element| puts element.attributes["contrib-type"] }
+         
+        parsed.elements.each("pmc-articleset/article/front/article-meta/contrib-group/contrib") 
+         { |element| puts element.attributes["contrib-type"] } #gives the xref-type - I want the name based on this
+         
+        puts root.elements["article/front/article-meta/contrib-group/contrib/xref[@ref-type='corresp']"].attributes["rid"]
     end
 end
 
