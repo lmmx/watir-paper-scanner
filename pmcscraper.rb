@@ -67,7 +67,7 @@ end
   properties        = oo.cell(line,'Z')
   fauthfull         = oo.cell(line,'AA')
 
-    if pmceutilsxml == nil
+    if pmceutilsxml.nil?
       puts line.to_s + "..."
     else
         url = pmceutilsxml
@@ -76,14 +76,22 @@ end
         xml_data = Net::HTTP.get_response(URI.parse(url)).body      # stores the XML
 
         parsedoc = Nokogiri::XML.parse(xml_data)
+
         corrdetails = parsedoc.at('contrib:has(xref[text()="*"])')
-         if (corrdetails.nil?)
-           oo.set(line,'D',"---")
+	corrdetailsalt = parsedoc.at_xpath('//*[@corresp]')        #don't think it matters whether this is .at_xpath or just .at
+
+         if (corrdetails.nil? && corrdetailsalt.nil?)
+	   oo.set(line,'D',"---")
            oo.set(line,'E',"---")
-         else
+         elsif not(corrdetails.nil?)
            surname = corrdetails.xpath( ".//surname" ).text
            oo.set(line,'D',surname)
            givennames = corrdetails.xpath( ".//given-names").text
+           oo.set(line,'E',givennames)
+         elsif not(corrdetailsalt.nil?)
+           surname = corrdetailsalt.xpath(".//surname").text
+           oo.set(line,'D',surname)
+           givennames = corrdetailsalt.xpath(".//given-names").text
            oo.set(line,'E',givennames)
          end
     end
