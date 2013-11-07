@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
-if (defined?(Roo).nil? && defined?(Watir).nil?)
-  require "watir-webdriver"
+if (defined?(Roo).nil?)
   require "google_drive"
   require "roo"
 end
@@ -20,7 +19,6 @@ if (defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD).nil?)
 end
 
 oo = Roo::Google.new(key, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD) #Loading :~)
-puts "Loading spreadsheet .  .  ."
 oo.default_sheet = "pubmed_result"
   
 if (defined?(Net).nil?)
