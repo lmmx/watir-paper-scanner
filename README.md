@@ -1,7 +1,7 @@
 watir-paper-scanner
 ===================
 
-<sup>"<i>Browser automation using Watir (Web Application Testing in Ruby) to pull metadata from pages where unavailable through XML.</i>"</sup>
+<sup>Original goal: "<i>Browser automation using Watir (Web Application Testing in Ruby) to pull metadata from pages where unavailable through XML.</i>"</sup>
 
 The <i>corresponding author</i> (CA) of a paper is for some bizarre reason unavailable through Pubmed's search results, so I'm writing a few Ruby scripts in an attempt to obtain it on demand.
 
@@ -25,7 +25,7 @@ The approach taken is as follows:
 <ul>
 <li>finding a URL to the article's page on the journal website within the HTML of the Pubmed abstract page,
 <li>finding a DOI hidden in the wrong place (searching the whole abstract page's HTML indiscriminately)
-<li>headless browser automation with Watir (though this is slow and a last resort)
+<li>headless browser automation with Watir (though this is slow and a last resort - despite the repo name!)
 </ul>
 </ol>
 
