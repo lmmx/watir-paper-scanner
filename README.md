@@ -38,6 +38,6 @@ Once fully functional, I'd love to make this freely available as on online tool 
 
 Any and all help given on my code is greatly appreciated :~)
 
-Louis Maddox
-2nd year Biochemistry BSc undergraduate
+<b>Louis Maddox</b><br />
+2nd year Biochemistry BSc undergraduate<br />
 University of Manchester (UK)
