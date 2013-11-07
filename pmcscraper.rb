@@ -1,16 +1,12 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
-if (defined?(Roo).nil?)
+unless defined?(Roo) && defined?(Watir)
   require "google_drive"
   require "roo"
 end
 
-if (defined?(key).nil?)
-    key="0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE"
-end
-
-if (defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD).nil?)
+unless defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD)
     puts "Please enter your Gmail address"
     GOOGLE_MAIL = gets.chomp
     puts "Please enter your password"
@@ -18,14 +14,16 @@ if (defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD).nil?)
     puts "Thanks!"
 end
 
-oo = Roo::Google.new(key, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD) #Loading :~)
+key = "0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE"
+oo = Roo::Google.new(key, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD)
+puts "Loading spreadsheet .  .  ."
 oo.default_sheet = "pubmed_result"
   
-if (defined?(Net).nil?)
+unless defined?(Net)
     require "net/http"
 end
 
-if (defined?(Nokogiri).nil?)
+unless defined?(Nokogiri)
     require "nokogiri"
 end
 
@@ -38,31 +36,42 @@ end
   last_author         = oo.cell(line,'A')
   first_author        = oo.cell(line,'B')
   unique_first_author = oo.cell(line,'C')
+  puts line  # keep this - see progress
  
   surnames    = oo.cell(line, 'D')
   givennames  = oo.cell(line, 'E')
   eutils_url  = oo.cell(line, 'S')
- 
+
   if eutils_url && eutils_url != ""
     uri       = URI.parse(eutils_url)
     xml_data  = Net::HTTP.get_response(uri).body
     document  = Nokogiri::XML.parse(xml_data)
  
     details  = document.at('contrib:has(xref[text()="*"])') || document.at('//*[@corresp]') || document.at('//*[@ref-type="corresp"]') 
-    email    = document.at('//*[@email]') || document.at('//email')
+    email    = document.xpath('//*[@email]')
+    email    = document.xpath('//email') if email.empty?
  
     surnames   = nil
     givennames = nil
     if details
       surnames   = details.xpath(".//surname" ).map(&:text)
       givennames = details.xpath(".//given-names").map(&:text)
-    elsif email
+      puts "Checking XML details..."
+    elsif email.any?
       details = document.at('contrib')
-      known_surnames   = details.xpath(".//surname" ).map(&:text)
-      known_givennames = details.xpath(".//given-names").map(&:text)
+      known_surnames   = details.xpath("..//surname" ).map(&:text)
+      known_givennames = details.xpath("..//given-names").map(&:text)
+      puts "Parsing an email address...."
  
-      emails = email.xpath(".//email").map(&:text)
+      emails = email.map(&:text)
       usernames = emails.map { |email| email.match(/^(.+)@.+$/)[1] }
+puts "email:"
+puts email.inspect    # test what is
+puts "emails:"
+puts emails.inspect   # coming out
+
+# note: this still needs to decide on a correct name from email addresses
+#       shouldn't be hard now I have the array of names and parsed email
  
       names = []
       usernames.each do |username|
@@ -72,7 +81,14 @@ end
       surnames    = []
       givennames  = []
       names.each do |name|
-        index = known_surnames.index { |surname| surname.match(/#{name}$/i) }
+	name = name.downcase
+	index = known_surnames.index do |surname|
+	  surname = surname.downcase
+	  initials = surname.split(/[- ]/).map { |x| x[0] }.join
+	  surname == name || surname.end_with?(name) || initials == name
+puts "surname value:"
+puts surname
+	end 
         next unless index
  
         surnames    << known_surnames[index]
