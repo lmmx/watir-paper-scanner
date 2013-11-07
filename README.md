@@ -1,7 +1,7 @@
 watir-paper-scanner
 ===================
 
-Browser automation using Watir (Web Application Testing in Ruby) to pull metadata from pages where unavailable through XML.
+<sup>Original mission statement: Browser automation using Watir (Web Application Testing in Ruby) to pull metadata from pages where unavailable through XML.</sup>
 
 The <i>corresponding author</i> (CA) of a paper is for some bizarre reason unavailable through Pubmed's search results, so I'm writing a few Ruby scripts in an attempt to obtain it on demand.
 
