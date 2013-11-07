@@ -32,11 +32,11 @@ The approach taken is as follows:
 The end product also ought to be aware that there are sometimes "equally corresponding" authors and handle multiple corresponding authors as is often stated.
 
 <h2>Parlez-vous <i>Ruby</i>?</h2>
-I'm a life sciences undergraduate with <i>no formal training</i> in code (hopefully it doesn't show) beyond what I've picked up through practice, and am extremely grateful for the patience and assistance of more experienced programmers on what is really my first real project in Ruby.
+I'm a life sciences undergraduate with <i>no formal training</i> in code (hopefully it doesn't show) beyond what I've picked up through practice, and am extremely grateful for the patience and assistance of more experienced programmers on my first real project in Ruby.
 
-Once fully functional, I'd love to make this freely available as on online tool (as to my knowledge it's not a great cost to deploy these things) for other academics, and would be happy for it to be put to use in your project - feel free to contact me through naivelocus@gmail.com
+Once fully functional, I'd love to make this freely available as an online tool (as to my knowledge it's not a great cost to deploy these things) for other academics, and would be happy for it to be put to use in your project - feel free to contact me through naivelocus@gmail.com
 
-Any and all help given on my code is greatly appreciated :~)
+Any and all help given on the code is greatly appreciated :~)
 
 <b>Louis Maddox</b><br />
 2nd year Biochemistry BSc<br />
