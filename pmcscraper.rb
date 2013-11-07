@@ -1,22 +1,14 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
-#check that you came from bookworm.rb, i.e. after loading the libraries needed:
-
 if (defined?(Roo).nil? && defined?(Watir).nil?)
   require "watir-webdriver"
   require "google_drive"
   require "roo"
-  else
-      puts "Hey bookworm"
 end
 
-#set up some info, unless already done in bookworm.rb
-if (defined?(sheetkey).nil?)
-    sheetkey="0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE"
-    sheetfull="https://docs.google.com/spreadsheet/ccc?key=" + sheetkey   #use this to see the actual sheet
-    sheetresults = "#gid=5"                 #append this to the URL for the sheet this program will use (pubmed_result)
-    results = sheetfull + sheetresults
+if (defined?(key).nil?)
+    key="0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE"
 end
 
 if (defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD).nil?)
@@ -27,8 +19,7 @@ if (defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD).nil?)
     puts "Thanks!"
 end
 
-# This passes the login credentials to Roo without requiring every user change system environment variables
-oo = Roo::Google.new(sheetkey, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD) #Loading :-)
+oo = Roo::Google.new(key, user: GOOGLE_MAIL, password: GOOGLE_PASSWORD) #Loading :~)
 puts "Loading spreadsheet .  .  ."
 oo.default_sheet = "pubmed_result"
   
