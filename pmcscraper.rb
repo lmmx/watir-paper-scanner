@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
-#check that you came here from bookworm.rb, i.e. after loading the libraries needed:
+#check that you came from bookworm.rb, i.e. after loading the libraries needed:
 
 if (defined?(Roo).nil? && defined?(Watir).nil?)
   require "watir-webdriver"
@@ -16,7 +16,7 @@ if (defined?(sheetkey).nil?)
     sheetkey="0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE"
     sheetfull="https://docs.google.com/spreadsheet/ccc?key=" + sheetkey   #use this to see the actual sheet
     sheetresults = "#gid=5"                 #append this to the URL for the sheet this program will use (pubmed_result)
-    results = sheetfull + sheetresults      #hey look I did it for you...
+    results = sheetfull + sheetresults
 end
 
 if (defined?(GOOGLE_MAIL).nil? && defined?(GOOGLE_PASSWORD).nil?)
