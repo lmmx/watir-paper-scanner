@@ -60,7 +60,7 @@ end
     document  = Nokogiri::XML.parse(xml_data)
  
     details  = document.at('contrib:has(xref[text()="*"])') || document.at('//*[@corresp]') || document.at('//*[@ref-type="corresp"]') 
-    email    = document.at('//*[@email]' || document.at('//email')
+    email    = document.at('//*[@email]') || document.at('//email')
  
     surnames   = nil
     givennames = nil
@@ -77,7 +77,7 @@ end
  
       names = []
       usernames.each do |username|
-        names << $2 if username =~ /^([^.]+)\.(.+)$/) || username =~ /^(.)(.+)$/
+        names << $2 if username =~ /^([^.]+)\.(.+)$/ || username =~ /^(.)(.+)$/
       end
  
       surnames    = []
