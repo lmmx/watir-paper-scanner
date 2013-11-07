@@ -1,7 +1,7 @@
 watir-paper-scanner
 ===================
 
-<sup>Original mission statement: "<i>Browser automation using Watir (Web Application Testing in Ruby) to pull metadata from pages where unavailable through XML.</i>"</sup>
+<sup>"<i>Browser automation using Watir (Web Application Testing in Ruby) to pull metadata from pages where unavailable through XML.</i>"</sup>
 
 The <i>corresponding author</i> (CA) of a paper is for some bizarre reason unavailable through Pubmed's search results, so I'm writing a few Ruby scripts in an attempt to obtain it on demand.
 
@@ -32,6 +32,12 @@ The approach taken is as follows:
 The end product also ought to be aware that there are sometimes "equally corresponding" authors and handle multiple corresponding authors as is often stated.
 
 <h2>Chip in!</h2>
-I'm an undergraduate with <i>no formal training</i> in code and am extremely grateful for the patience and assistance of more experienced programmers. Once fully functional I'd really like to make this freely available as on online tool (as to my knowledge it's not a great cost to deploy these things) for other academics, and would be happy for it to be used other projects - if this is of interest to you, please contact me through naivelocus@gmail.com
+I'm an undergraduate with <i>no formal training</i> in code (hopefully it doesn't show) who's been extremely grateful for the patience and assistance of more experienced programmers on what is really my first real project in Ruby.
 
-Any and all help given on my code is greatly appreciated!
+Once fully functional, I'd love to make this freely available as on online tool (as to my knowledge it's not a great cost to deploy these things) for other academics, and would be happy for it to be put to use in your project - feel free to contact me through naivelocus@gmail.com
+
+Any and all help given on my code is greatly appreciated :~)
+
+Louis Maddox
+2nd year Biochemistry BSc undergraduate
+University of Manchester (UK)
