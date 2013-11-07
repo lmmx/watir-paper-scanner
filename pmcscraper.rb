@@ -40,59 +40,58 @@ if (defined?(Nokogiri).nil?)
     require "nokogiri"
 end
 
+def format_for_spreadsheet(values)
+  return "---" unless values
+  '=concatenate("' + values.join(',CHAR(10),') + '")'
+end
+ 
 2.upto(oo.last_row) do |line|
-
-  lastauth          = oo.cell(line,'A')
-  fauthsur          = oo.cell(line,'B')
-  uniqfasur         = oo.cell(line,'C')
-  correspauthsur    = oo.cell(line,'D')
-  correspauthgn     = oo.cell(line,'E')
-  hyplink           = oo.cell(line,'F')
-  title             = oo.cell(line,'G')
-  pmurlfield        = oo.cell(line,'H')
-  pmid              = oo.cell(line,'I')
-  journal           = oo.cell(line,'J')
-  authors           = oo.cell(line,'K')
-  details           = oo.cell(line,'L')
-  nodoi             = oo.cell(line,'M')
-  doi               = oo.cell(line,'P')
-  doiuri            = oo.cell(line,'Q')
-  doixml            = oo.cell(line,'R')
-  pmceutilsxml      = oo.cell(line,'S')
-  realurl           = oo.cell(line,'U')
-  pmcid             = oo.cell(line,'V')
-  pubmeduri         = oo.cell(line,'W')
-  identifiers       = oo.cell(line,'X')
-  pmid              = oo.cell(line,'Y')
-  properties        = oo.cell(line,'Z')
-  fauthfull         = oo.cell(line,'AA')
-
-    if pmceutilsxml.nil?
-      puts line.to_s + "..."
-    else
-        url = pmceutilsxml
-
-        puts line.to_s + "!"
-        xml_data = Net::HTTP.get_response(URI.parse(url)).body      # stores the XML
-
-        parsedoc = Nokogiri::XML.parse(xml_data)
-
-        corrdetails = parsedoc.at('contrib:has(xref[text()="*"])')
-	corrdetailsalt = parsedoc.at_xpath('//*[@corresp]')        #don't think it matters whether this is .at_xpath or just .at
-
-         if (corrdetails.nil? && corrdetailsalt.nil?)
-	   oo.set(line,'D',"---")
-           oo.set(line,'E',"---")
-         elsif not(corrdetails.nil?)
-           surname = corrdetails.xpath( ".//surname" ).text
-           oo.set(line,'D',surname)
-           givennames = corrdetails.xpath( ".//given-names").text
-           oo.set(line,'E',givennames)
-         elsif not(corrdetailsalt.nil?)
-           surname = corrdetailsalt.xpath(".//surname").text
-           oo.set(line,'D',surname)
-           givennames = corrdetailsalt.xpath(".//given-names").text
-           oo.set(line,'E',givennames)
-         end
+  last_author         = oo.cell(line,'A')
+  first_author        = oo.cell(line,'B')
+  unique_first_author = oo.cell(line,'C')
+ 
+  surnames    = oo.cell(line, 'D')
+  givennames  = oo.cell(line, 'E')
+  eutils_url  = oo.cell(line, 'S')
+ 
+  if eutils_url && eutils_url != ""
+    uri       = URI.parse(eutils_url)
+    xml_data  = Net::HTTP.get_response(uri).body
+    document  = Nokogiri::XML.parse(xml_data)
+ 
+    details  = document.at('contrib:has(xref[text()="*"])') || document.at('//*[@corresp]') || document.at('//*[@ref-type="corresp"]') 
+    email    = document.at('//*[@email]') || document.at('//email')
+ 
+    surnames   = nil
+    givennames = nil
+    if details
+      surnames   = details.xpath(".//surname" ).map(&:text)
+      givennames = details.xpath(".//given-names").map(&:text)
+    elsif email
+      details = document.at('contrib')
+      known_surnames   = details.xpath(".//surname" ).map(&:text)
+      known_givennames = details.xpath(".//given-names").map(&:text)
+ 
+      emails = email.xpath(".//email").map(&:text)
+      usernames = emails.map { |email| email.match(/^(.+)@.+$/)[1] }
+ 
+      names = []
+      usernames.each do |username|
+        names << $2 if username =~ /^([^.]+)\.(.+)$/) || username =~ /^(.)(.+)$/
+      end
+ 
+      surnames    = []
+      givennames  = []
+      names.each do |name|
+        index = known_surnames.index { |surname| surname.match(/#{name}$/i) }
+        next unless index
+ 
+        surnames    << known_surnames[index]
+        givennames  << known_givennames[index]
+      end
     end
+ 
+    oo.set(line, 'D', format_for_spreadsheet(surnames))
+    oo.set(line, 'E', format_for_spreadsheet(givennames))
+  end
 end
