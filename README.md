@@ -3,9 +3,9 @@ watir-paper-scanner
 
 <sup>Original goal: "<i>Browser automation using Watir (Web Application Testing in Ruby) to pull metadata from pages where unavailable through XML.</i>"</sup>
 
-The <i>corresponding author</i> (CA) of a paper is for some bizarre reason unavailable through Pubmed's search results, so I'm writing a few Ruby scripts in an attempt to obtain it on demand.
+The <i>corresponding author</i> (CA) of a paper isn't available through Pubmed's search results, so I'm writing a few Ruby scripts in an attempt to obtain it on demand.
 
-For anyone interested in how it works, the CA is indicated on an article's abstract page by:
+For anyone interested in how this works, the CA is indicated on an article's abstract page by:
 <ul>
 <li> [<i>most simply</i>] an xref tag enclosing an asterisk (*)
 <li> an xref tag with attribute ref-type="corresp"
@@ -20,7 +20,7 @@ A sample of over 500 results of a Pubmed query (.csv output stored in an online 
 The approach taken is as follows:
 <ol>
 <li>For the minority of papers (~10%) hosted in Pubmed Central (PMC), simply parse the eUtils XML file (included in Pubmed search output) with Nokogiri for tags as described above and match the name found to surnames already obtained in the search results to confirm CA.
-<li>The URL for many of the remaining papers can be accesed from an available Digital Object Identifier (DOI) key, as simply http://dx.doi.org/DOI_goes_here, and from there parsed in text as for XML (but probably with less ease). A variety of methods can be used for this, with brute regular expressions likely being the last resort over names found in HTML tags and found to match those of the record's search result.
+<li>The URL for many of the remaining papers can be accesed from an available Digital Object Identifier (DOI) key, as simply http://dx.doi.org/DOI-goes-here, and from there parsed in text as for XML (but probably with less ease). A variety of methods can be used for this, with brute regular expressions likely being the last resort over names found in HTML tags and found to match those of the record's search result.
 <li>The URL for those papers having neither a DOI key, nor a copy in PMC may then require:
 <ul>
 <li>finding a URL to the article's page on the journal website within the HTML of the Pubmed abstract page,
