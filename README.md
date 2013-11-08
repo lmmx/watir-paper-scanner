@@ -44,5 +44,5 @@ Once fully functional, I'd love to make this freely available as an online tool 
 Any and all help given on the code in the meantime is greatly appreciated :~)
 
 <b>Louis Maddox</b><br />
-2nd year Biochemistry BSc<br />
+Biochemistry BSc<br />
 University of Manchester (UK)
