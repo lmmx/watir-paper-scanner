@@ -36,6 +36,9 @@ The approach taken is :
 
 The end product also ought to be aware that there are sometimes "equally corresponding" authors and handle multiple corresponding authors as is often stated.
 
+![logo](https://raw.github.com/lmmx/watir-paper-scanner/master/scrapertests.png "")
+<sup>These are the outputs from running the pmcscraper.rb script as it stands (7th Nov '13), where I'm outputting the variables to show what values they take in given instances. The idea is now to match up usernames with surnames.</sup>
+
 <h2>Parlez-vous <i>Ruby</i>?</h2>
 I'm a life sciences undergraduate with <i>no formal training</i> in code (hopefully it doesn't show) beyond what I've picked up through practice, and am extremely grateful for the patience and assistance of more experienced Ruby programmers.
 
