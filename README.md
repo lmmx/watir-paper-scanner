@@ -10,12 +10,14 @@ For anyone interested in how this works, the CA is indicated on an article's abs
 <li> [<i>most simply</i>] an <code>&lt;xref&gt;</code> tag enclosing an asterisk (*)
 <li> an <code>&lt;xref&gt;</code> tag with <code>ref-type="corresp"</code>
 <li> a <code>&lt;contrib&gt;</code> tag with <code>corresp="yes"</code>
+<li> a <code>&lt;corresp&gt;</code> tag enclosing an email address (sometimes the only thing indicating correspondence)
+<li> an <code>&lt;email&gt;</code> tag
 <li> etc.
 </ul>
 
 Due to this inconsistency, even in Pubmed Central's supposedly consistently formatted eUtils XML files, this isn't the simplest situation to code for (although at least in this the CA can always be determined). The Nokogiri Ruby library with its support of xpaths allows dynamic selection of tags and their attributes, navigating in and out of the XML DOM tree, with the only requirement being a URL to take this information from.
 
-A sample of over 500 results of a Pubmed query (.csv output stored in an online Google Spreadsheet with public read/write permissions), a sample of over 500 papers is in use to test the code. All being well, it would not be too difficult to render the spreadsheet's few formulae (mostly RegEx) in code and integrate this program directly into Pubmed's search API for a functioning web app or something similar! Heath Anderson has written a Ruby version of the Pubmed search API <a href="https://gist.github.com/handerson/2703006">here</a>.
+A sample of over 500 results of a Pubmed query (.csv output stored in an online Google Spreadsheet with public read/write permissions) is in use to test the code. All being well, it would not be too difficult to render the spreadsheet's few formulae (mostly RegEx) in code and integrate this program directly into Pubmed's search API for a functioning web app or something similar! Heath Anderson has written a Ruby version of the Pubmed search API <a href="https://gist.github.com/handerson/2703006">here</a>.
 
 For further details on why this is needed or how it ought to be working, please see the questions I've posted regarding the issue at <a href="http://www.biostars.org/p/82578/">Biostars</a>, <a href="http://researchgate.net/post/Is_it_possible_to_obtain_corresponding_author_from_DOI_metadata">ResearchGate</a> and most recently the <i><a href="https://groups.google.com/forum/#!topic/scraperwiki/uVfQ866Xr5U">Scraperwiki</i> Google group</a>.
 
@@ -37,7 +39,7 @@ The approach taken is :
 The end product also ought to be aware that there are sometimes "equally corresponding" authors and handle multiple corresponding authors as is often stated.
 <center>
 ![logo](https://raw.github.com/lmmx/watir-paper-scanner/master/scrapertests.png "")
-<br /><sup>These are the outputs from running the pmcscraper.rb script <a href="https://github.com/lmmx/watir-paper-scanner/blob/1672075219c750462fcf0f909dddd33287c51858/pmcscraper.rb">as it stands</a> (7th Nov '13).<br />I'm outputting the variables to show what values they take in given instances. The idea is now to match up usernames with surnames. Lines referenced are those of <a href="https://docs.google.com/spreadsheet/ccc?key=0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE#gid=5">the spreadsheet</a>.</sup>
+<br /><sup>These are the outputs from running the pmcscraper.rb script <a href="https://github.com/lmmx/watir-paper-scanner/blob/1672075219c750462fcf0f909dddd33287c51858/pmcscraper.rb">as it stands</a> (7th Nov '13).<br />I'm outputting the variables to show what values they take in given instances. The idea is now to match up usernames with surnames. <br />Lines referenced are those of <a href="https://docs.google.com/spreadsheet/ccc?key=0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE#gid=5">the spreadsheet</a>.</sup>
 </center>
 <h2>Parlez-vous <i>Ruby</i>?</h2>
 I'm a life sciences undergraduate with <i>no formal training</i> in code (hopefully it doesn't show) beyond what I've picked up through practice, and am extremely grateful for the patience and assistance of more experienced Ruby programmers.
