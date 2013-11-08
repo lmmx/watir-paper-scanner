@@ -7,9 +7,9 @@ The <i>corresponding author</i> (CA) of a paper isn't available through Pubmed's
 
 For anyone interested in how this works, the CA is indicated on an article's abstract page by:
 <ul>
-<li> [<i>most simply</i>] an xref tag enclosing an asterisk (*)
-<li> an &lt;xref&gt; tag with ref-type="corresp"
-<li> a &lt;contrib&gt; tag with corresp="yes"
+<li> [<i>most simply</i>] an <code>&lt;xref&gt;</code> tag enclosing an asterisk (*)
+<li> an <code>&lt;xref&gt;</code> tag with <code>ref-type="corresp"</code>
+<li> a <code>&lt;contrib&gt;</code> tag with <code>corresp="yes"</code>
 <li> etc.
 </ul>
 
