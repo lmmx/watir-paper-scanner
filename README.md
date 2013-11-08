@@ -30,14 +30,14 @@ The approach taken is :
 <ul>
 <li>finding a URL to the article's page on the journal website within the HTML of the Pubmed abstract page,
 <li>finding a DOI hidden in the wrong place (searching the whole abstract page's HTML indiscriminately)
-<li>headless browser automation with Watir (though this is slow and a last resort - despite the repo name!)
+<li>headless browser automation with Watir, though this is slow and a last resort <sup>(despite the repo name!)</sup>
 </ul>
 </ol>
 
 The end product also ought to be aware that there are sometimes "equally corresponding" authors and handle multiple corresponding authors as is often stated.
 <center>
 ![logo](https://raw.github.com/lmmx/watir-paper-scanner/master/scrapertests.png "")
-<br /><sup>These are the outputs from running the pmcscraper.rb script as it stands (7th Nov '13), where I'm outputting the variables to show what values they take in given instances. The idea is now to match up usernames with surnames.</sup>
+<br /><sup>These are the outputs from running the pmcscraper.rb script <a href="https://github.com/lmmx/watir-paper-scanner/blob/1672075219c750462fcf0f909dddd33287c51858/pmcscraper.rb">as it stands</a> (7th Nov '13).<br />I'm outputting the variables to show what values they take in given instances. The idea is now to match up usernames with surnames. Lines referenced are those of <a href="https://docs.google.com/spreadsheet/ccc?key=0Aj697J8sF_ekdHM4NVBRZWV0eXFERGxrWEdzSlRReUE#gid=5">the spreadsheet</a>.</sup>
 </center>
 <h2>Parlez-vous <i>Ruby</i>?</h2>
 I'm a life sciences undergraduate with <i>no formal training</i> in code (hopefully it doesn't show) beyond what I've picked up through practice, and am extremely grateful for the patience and assistance of more experienced Ruby programmers.
@@ -46,6 +46,6 @@ Once fully functional, I'd love to make this freely available as an online tool 
 
 Any and all help given on the code in the meantime is greatly appreciated :~)
 
-<b>Louis Maddox</b><br />
+<b><a href="http://sites.google.com/site/lmmddx/">Louis Maddox</a></b><br />
 Biochemistry BSc<br />
 University of Manchester (UK)
