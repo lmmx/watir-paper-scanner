@@ -8,12 +8,12 @@ The <i>corresponding author</i> (CA) of a paper isn't available through Pubmed's
 For anyone interested in how this works, the CA is indicated on an article's abstract page by:
 <ul>
 <li> [<i>most simply</i>] an xref tag enclosing an asterisk (*)
-<li> an xref tag with attribute ref-type="corresp"
-<li> a contrib tag with attribute corresp="yes"
+<li> an &lt;xref&gt; tag with ref-type="corresp"
+<li> a &lt;contrib&gt; tag with corresp="yes"
 <li> etc.
 </ul>
 
-Due to this inconsistency, even in Pubmed Central's JATS schema (see docs), this isn't the simplest situation to code for, but the Nokogiri Ruby library with its support of xpaths allows dynamic selection of tags and their attributes, navigating in and out of the XML DOM tree, with the only requirement being a URL to take this information from.
+Due to this inconsistency, even in Pubmed Central's supposedly consistently formatted eUtils XML files, this isn't the simplest situation to code for (although at least in this the CA can always be determined). The Nokogiri Ruby library with its support of xpaths allows dynamic selection of tags and their attributes, navigating in and out of the XML DOM tree, with the only requirement being a URL to take this information from.
 
 A sample of over 500 results of a Pubmed query (.csv output stored in an online Google Spreadsheet with public read/write permissions), a sample of over 500 papers is in use to test the code. All being well, it would not be too difficult to render the spreadsheet's few formulae (mostly RegEx) in code and integrate this program directly into Pubmed's search API for a functioning web app or something similar!
 
